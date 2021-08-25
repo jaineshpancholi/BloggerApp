@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>Blogger - login</title>
+  </head>
+</html>
+{% extends 'nav-footer.html '%}
+{% load static %}
+{% block sectionData %}
+<section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'images/bg_4.jpg' %});">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-end justify-content-center">
+        <div class="col-md-9 ftco-animate pb-5 text-center">
+          <h1 class="mb-3 bread">Login Page</h1>
+          <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home' %}">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Login Page<i class="ion-ios-arrow-forward"></i></span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="ftco-section ftco-no-pb contact-section">
+    <div class="container">
+        <center><h1>Login Your Account</h1> </center>
+      <div class="row block-9">
+        <div class="col-md-12 order-md-last d-flex">
+          {% if error%}
+            <script>
+              alert("INCORRECT USERNAME OR PASSWORD...")
+            </script>
+          {% endif %}
+          <form action="" class="bg-light p-5 contact-form" method="post">
+              {% csrf_token %}
+
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Your Username" name="username">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" placeholder="Your Password" name="pwd">
+            </div>
+            
+            <div class="form-group">
+              <input type="submit" value="Login" class="btn btn-primary py-3 px-5">
+            </div>
+          </form>
+        
+        </div>
+
+        
+      </div>
+    </div>
+  </section>
+{% endblock %}

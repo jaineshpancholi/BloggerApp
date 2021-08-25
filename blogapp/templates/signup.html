@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <title>Blogger - Signup</title>
+  </head>
+</html>
+{% extends 'nav-footer.html '%}
+{% load static %}
+{% block sectionData %}
+<section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'images/bg_4.jpg' %});">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-end justify-content-center">
+        <div class="col-md-9 ftco-animate pb-5 text-center">
+          <h1 class="mb-3 bread">Signup Page</h1>
+          <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home' %}">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Contact us<i class="ion-ios-arrow-forward"></i></span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="ftco-section ftco-no-pb contact-section">
+    <div class="container">
+        <center><h1>Create Your Account</h1> </center>
+      <div class="row block-9">
+        {% if error %}
+          <script>
+            alert("THIS USERNAME IS ALREADY EXIST...TRY ANOTHER.")
+          </script>
+        {% endif %}
+        <div class="col-md-12 order-md-last d-flex">
+          <form action="" class="bg-light p-5 contact-form" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+            <div class="form-group">
+              <input type="text" required class="form-control" placeholder="Your Username" name="username">
+            </div>
+            <div class="form-group">
+              <input type="password" required class="form-control" placeholder="Your Password" name="pwd">
+            </div>
+            <div class="form-group">
+                <input type="text" required class="form-control" placeholder="Your Firstname" name="firstname">
+              </div>
+              <div class="form-group">
+                <input type="text" required class="form-control" placeholder="Your Lastname" name="lastname">
+              </div>
+              <div class="form-group">
+                <input type="email" required class="form-control" placeholder="Your Email" name="email">
+              </div>
+              <div class="form-group">
+                <input type="file" required class="form-control"  name="profileimg">
+              </div>
+              <div class="form-group">
+                <textarea placeholder="About You..." required class="form-control" name="aboutyou"></textarea>
+              </div>
+            
+            <div class="form-group">
+                <a href=""><input type="submit" value="Signup" class="btn btn-primary py-3 px-5"></a>
+            </div>
+          </form>
+        
+        </div>
+
+        
+      </div>
+    </div>
+  </section>
+{% endblock %}

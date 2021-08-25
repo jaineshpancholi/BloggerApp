@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <title>Blogger - Addblog</title>
+  </head>
+</html>
+{% extends 'nav-footer.html '%}
+{% load static %}
+{% block sectionData %}
+<section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'images/bg_4.jpg' %});">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-end justify-content-center">
+        <div class="col-md-9 ftco-animate pb-5 text-center">
+          <h1 class="mb-3 bread">Add Blog</h1>
+          <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home' %}">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Contact us<i class="ion-ios-arrow-forward"></i></span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="ftco-section ftco-no-pb contact-section">
+    <div class="container">
+        <center><h1>Create New Blog</h1> </center>
+      <div class="row block-9">
+        {% if error %}
+          <script>
+            alert("THIS USERNAME IS ALREADY EXIST...TRY ANOTHER.")
+          </script>
+        {% endif %}
+        <div class="col-md-12 order-md-last d-flex">
+          <form action="" class="bg-light p-5 contact-form" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+            
+
+              <div class="form-group">
+                    <select required class="form-control" name="cid">
+                        <option  value="">Select Category</option>
+                        {% for i in allcat %}
+                            <option  value="{{ i.id }}">{{ i.name }}</option>
+                        {% endfor %}
+                    </select>
+              </div>
+              <div class="form-group">
+                    <input type="text" required class="form-control" placeholder="Title" name="title">
+              </div>
+
+              <div class="form-group">
+                    <input type="file" required class="form-control"  name="blogimg">
+              </div>
+
+              <div class="form-group">
+                    <textarea placeholder="short Description" required class="form-control" name="short"></textarea>
+              </div>
+
+              <div class="form-group">
+                    <textarea placeholder="Long Description" required class="form-control" name="long"></textarea>
+              </div>
+
+              <div class="form-group">
+                    <input type="submit" value="Add Blog"  class="btn btn-primary py-3 px-5">
+             </div>
+          </form>
+        
+        </div>
+
+        
+      </div>
+    </div>
+  </section>
+{% endblock %}

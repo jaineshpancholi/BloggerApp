@@ -1,0 +1,108 @@
+<html>
+  <head>
+    <title>Blogger - Userpanel</title>
+  </head>
+</html>
+{% extends 'nav-footer.html'%}
+	{% load static %}
+	{% block sectionData %}
+
+    <section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'images/bg_4.jpg' %});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate pb-5 text-center">
+            <h1 class="mb-3 bread">Welcome, {{ request.user.first_name }}</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home' %}">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>All Blogs <i class="ion-ios-arrow-forward"></i></span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="ftco-section">
+    	<div class="container">
+        <div class="row">
+        	<div class="col-lg-8">
+        		<div class="row">
+					{% for i in cateblog %}
+        			<div class="col-md-4 ftco-animate">
+    						<div class="blog-entry">
+		    					<a href="{% url 'detail' i.id %}" class="img-2"><img src="{{ i.image.url }}" class="img-fluid" alt="Colorlib Template"></a>
+			    				<div class="text pt-3">
+	    							<p class="meta d-flex"><span class="pr-3">{{ i.usr.first_name }}</span><span class="ml-auto pl-3">{{ i.date }}</span></p>
+	    							<h3><a href="{% url 'detail' i.id %}">{{ i.title }}</a></h3>
+	    							<p class="mb-0"><a href="{% url 'detail' i.id %}" class="btn btn-black py-2">Read More <span class="icon-arrow_forward ml-4"></span></a></p>
+                                    
+                                    <p style="margin-top: 5px;"><a href="{% url 'delete' i.id %}" class="btn btn-black py-2">Delete <span class="icon-arrow_forward ml-4"></span></a></p>
+                                </div>
+		    				</div>
+    				</div>
+					{% endfor %}
+        		</div>
+        		<div class="row mt-5">
+		          <div class="col text-center">
+		            <div class="block-27">
+		              <ul>
+		                <li><a href="#">&lt;</a></li>
+		                <li class="active"><span>1</span></li>
+		                <li><a href="#">2</a></li>
+		                <li><a href="#">3</a></li>
+		                <li><a href="#">4</a></li>
+		                <li><a href="#">5</a></li>
+		                <li><a href="#">&gt;</a></li>
+		              </ul>
+		            </div>
+		          </div>
+		        </div>
+        	</div>
+
+        	<div class="col-lg-4">
+                <center><a href="{% url 'addblog' %}"><button class="btn btn-success ">ADD BLOG</button></a></center>
+                <br>
+        		<div class="sidebar-wrap">
+	        		<div class="sidebar-box p-4 about text-center ftco-animate">
+			          <h2 class="heading mb-4">About Me</h2>
+			          <img src="{{ udetail.userimage.url }}" class="img-fluid" alt="Colorlib Template">
+                      <br><br>
+                      <a href="{% url 'editprofile' %}"><button class="btn btn-warning btn-sm">Edit Profile</button></a>
+                      <a href="{% url 'changepassword' %}"><button class="btn btn-info btn-sm">Change Password</button></a>
+			          <div class="text pt-4">
+			          	<p>Hi! My name is <strong>{{ request.user.first_name }}</strong>
+                        <br>{{ udetail.aboutyou }}</p>
+			          </div>
+	        		</div>
+	        		
+	        
+            </div>
+        	</div>
+        </div>
+    	</div>
+    </section>
+
+		
+		<section class="ftco-subscribe ftco-section bg-light">
+      <div class="overlay">
+        <div class="container">
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-8 text-wrap text-center heading-section ftco-animate">
+              <h2 class="mb-4"><span>Subcribe to our Newsletter</span></h2>
+              <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+              <div class="row d-flex justify-content-center mt-4 mb-4">
+                <div class="col-md-8">
+                  <form action="#" class="subscribe-form">
+                    <div class="form-group d-flex">
+                      <input type="text" class="form-control" placeholder="Enter email address">
+                      <input type="submit" value="Subscribe" class="submit px-3">
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% endblock %}
+    
